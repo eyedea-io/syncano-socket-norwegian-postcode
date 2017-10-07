@@ -1,0 +1,31 @@
+name: norwegian-postcode
+description: Searching for norwegian post codes
+version: 0.0.1
+
+endpoints:
+  search:
+    description: Search for data based on given postcode
+    parameters:
+      postcode:
+        type: integer
+        description: Post code
+        example: 0161
+    response:
+      success:
+        description: Successful query
+        parameters:
+          city:
+            type: string
+          municipality:
+            type: string
+          municipality_id:
+            type: string
+          type:
+            type: string
+      fail:
+        mimetype: application/json
+        description: Zip generation failed
+        exit_code: 400
+        parameters:
+          message:
+            type: string
