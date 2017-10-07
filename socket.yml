@@ -1,6 +1,6 @@
 name: norwegian-postcode
 description: Searching for norwegian post codes
-version: 0.0.2
+version: 0.0.3
 endpoints:
   search:
     description: Search for data based on given postcode
