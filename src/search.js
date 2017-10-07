@@ -17,7 +17,6 @@ export default (ctx) => {
       const [postCode, city, municipalityId, municipality, category] = line.split('\t')
 
       if (postCode === ctx.args.post_code) {
-        lineReader.close()
         response.json({
           city: city,
           municipality_id: municipalityId,
@@ -28,7 +27,7 @@ export default (ctx) => {
       }
     })
 
-    lineReader.on('close', (line) => {
+    lineReader.on('close', () => {
       response.json({'message': 'Post code not found!'}, 404)
       resolve()
     })
