@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "ISC",
   "scripts": {
-    "test": "yarn && node node_modules/phantomjs-prebuilt/install.js && npm run test:lint && npm run test:e2e:coverage",
+    "test": "yarn && npm run test:lint && npm run test:e2e:coverage",
     "test:e2e-single": "cross-env NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 10000",
     "test:e2e-single:coverage": "nyc --produce-source-map=true cross-env NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 4000",
     "test:e2e": "npm run test:e2e-single",
