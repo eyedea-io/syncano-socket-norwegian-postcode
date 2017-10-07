@@ -7,7 +7,7 @@ export default (ctx) => {
   const {response} = Syncano(ctx)
 
   return new Promise((resolve, reject) => {
-    const readStream = fs.createReadStream(path.join(__dirname, 'codes.txt'))
+    const readStream = fs.createReadStream(path.join(__dirname, 'codes.txt'), {encoding: 'utf-8'})
     const lineReader = readline.createInterface({
       input: readStream,
       output: null
@@ -17,8 +17,9 @@ export default (ctx) => {
       const [postCode, city, municipalityId, municipality, category] = line.split('\t')
 
       if (postCode === ctx.args.post_code) {
+        lineReader.close()
         response.json({
-          city,
+          city: city,
           municipality_id: municipalityId,
           municipality,
           category
