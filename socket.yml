@@ -1,7 +1,6 @@
 name: norwegian-postcode
 description: Searching for norwegian post codes
-version: 0.0.1
-
+version: 0.0.2
 endpoints:
   search:
     description: Search for data based on given postcode
@@ -9,7 +8,7 @@ endpoints:
       postcode:
         type: integer
         description: Post code
-        example: 0161
+        example: 113
     response:
       success:
         description: Successful query
