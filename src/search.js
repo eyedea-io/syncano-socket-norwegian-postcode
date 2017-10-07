@@ -3,10 +3,10 @@ import path from 'path'
 import readline from 'readline'
 import Syncano from 'syncano-server'
 
-const toTitleCase = (str) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
-
 export default (ctx) => {
   const {response} = Syncano(ctx)
+
+  const toTitleCase = (str) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
 
   // Parsing counties file
   const countiesFile = fs.readFileSync(path.join(__dirname, 'counties.csv'), {encoding: 'utf-8'})
@@ -27,22 +27,26 @@ export default (ctx) => {
       output: null
     })
 
+    let result = null
     lineReader.on('line', (line) => {
       const [postCode, city, municipalityId, municipality, category] = line.split('\t')
 
       if (postCode === ctx.args.post_code) {
-        response.json({
+        result = {
           city: toTitleCase(city),
           municipality: toTitleCase(municipality),
           county: counties[municipalityId],
           category
-        })
-        resolve()
+        }
       }
     })
 
     lineReader.on('close', () => {
-      response.json({'message': 'Post code not found!'}, 404)
+      if (result) {
+        response.json(result)
+      } else {
+        response.json({'message': 'Post code not found!'}, 404)
+      }
       resolve()
     })
   })
