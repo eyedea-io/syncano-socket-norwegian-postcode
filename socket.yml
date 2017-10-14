@@ -17,9 +17,16 @@ endpoints:
             type: string
           municipality:
             type: string
-          municipality_id:
+          county:
             type: string
-          type:
+          category:
+            type: string
+      notFound:
+        mimetype: application/json
+        description: Post code not found
+        exit_code: 404
+        parameters:
+          message:
             type: string
       fail:
         mimetype: application/json

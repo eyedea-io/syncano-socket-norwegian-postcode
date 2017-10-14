@@ -35,7 +35,7 @@ export default (ctx) => {
         result = {
           city: toTitleCase(city),
           municipality: toTitleCase(municipality),
-          county: counties[municipalityId],
+          county: counties[municipalityId.slice(0, 2)],
           category
         }
       }
@@ -43,9 +43,9 @@ export default (ctx) => {
 
     lineReader.on('close', () => {
       if (result) {
-        response.json(result)
+        response.success(result)
       } else {
-        response.json({'message': 'Post code not found!'}, 404)
+        response.notFound({'message': 'Post code not found!'})
       }
       resolve()
     })
