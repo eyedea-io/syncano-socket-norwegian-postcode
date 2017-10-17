@@ -22,14 +22,12 @@ endpoints:
           category:
             type: string
       notFound:
-        mimetype: application/json
         description: Post code not found
         exit_code: 404
         parameters:
           message:
             type: string
       fail:
-        mimetype: application/json
         description: Zip generation failed
         exit_code: 400
         parameters:
