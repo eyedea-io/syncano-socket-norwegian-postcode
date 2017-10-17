@@ -5,8 +5,8 @@ endpoints:
   search:
     description: Search for data based on given postcode
     parameters:
-      postcode:
-        type: integer
+      post_code:
+        type: string
         description: Post code
         example: 113
     response:
