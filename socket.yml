@@ -1,18 +1,19 @@
 name: norwegian-postcode
 description: Searching for norwegian post codes
-version: 0.0.7
 endpoints:
   search:
     description: Search for data based on given postcode
-    parameters:
-      post_code:
-        type: string
-        description: Post code
-        example: 113
-    response:
+    inputs:
+      properties:
+        postCode:
+          type: string
+          description: Post code
+          examples:
+            - 113
+    outputs:
       success:
         description: Successful query
-        parameters:
+        properties:
           city:
             type: string
           municipality:
@@ -24,12 +25,12 @@ endpoints:
       notFound:
         description: Post code not found
         exit_code: 404
-        parameters:
+        properties:
           message:
             type: string
       fail:
         description: Zip generation failed
         exit_code: 400
-        parameters:
+        properties:
           message:
             type: string
